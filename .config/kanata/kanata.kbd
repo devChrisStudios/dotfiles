@@ -1,0 +1,89 @@
+;; This is the config section for timers
+(defcfg
+  process-unmapped-keys yes
+)
+
+
+;; Timing variables for tap/hold (in milliseconds)
+(defvar
+  tap-time 200
+  hold-time 250
+)
+
+;; Custom key behaviors
+(defalias
+
+	dvo (layer-switch dvorak)
+	qwe (layer-switch base)
+	bypass (layer-switch clean)
+	nav (tap-hold $tap-time $hold-time spc (layer-toggle navigation))
+	
+  ;; Caps Lock (For Both Layers): Tap for Esc, Hold for L-Control
+  cap (tap-hold $tap-time $hold-time esc lctl)
+
+  ;; QWERTY Home Row Mods
+  aq (tap-hold $tap-time $hold-time a lmet)
+  sq (tap-hold $tap-time $hold-time s lalt)
+  dq (tap-hold $tap-time $hold-time d lsft)
+  fq (tap-hold $tap-time $hold-time f lctl)
+  jq (tap-hold $tap-time $hold-time j rctl)
+  kq (tap-hold $tap-time $hold-time k rsft)
+  lq (tap-hold $tap-time $hold-time l ralt)
+  ;q (tap-hold $tap-time $hold-time ; rmet)
+
+	;; Dvorak Home Row Mods
+  ad (tap-hold $tap-time $hold-time a lmet)
+  od (tap-hold $tap-time $hold-time o lalt)
+  ed (tap-hold $tap-time $hold-time e lctl)
+  ud (tap-hold $tap-time $hold-time u lsft)
+  hd (tap-hold $tap-time $hold-time h rsft)
+  td (tap-hold $tap-time $hold-time t rctl)
+  nd (tap-hold $tap-time $hold-time n ralt)
+  sd (tap-hold $tap-time $hold-time s rmet)
+)
+
+;; The physical keys we are looking at
+(defsrc
+caps
+  q w e r t y u i o p [ ]
+  a s d f g h j k l ; '
+  z x c v b n m , . /
+  spc f12 f1
+ )
+
+;; QWERTY Layer
+(deflayer base
+	@cap
+		q w e r t y u i o p [ ]
+		@aq @sq @dq @fq g h @jq @kq @lq @;q '
+		z x c v b n m , . /
+		@nav @dvo @bypass
+)
+
+;; DVORAK Layer
+(deflayer dvorak
+ @cap
+ ' , . p y f g c r l [ ]
+ @ad @od @ed @ud i d @hd @td @nd @sd -
+ ; q j k x b m w v z
+ @nav @qwe @bypass
+)
+
+;; nav Layer
+(deflayer navigation
+	@cap
+		XX XX XX  lrld  XX XX XX XX XX XX XX XX
+		XX XX XX XX XX left down up right XX XX
+		XX XX XX XX XX XX XX XX XX XX
+		@nav XX XX
+)
+
+;; CLEAN Layer
+(deflayer clean
+	@cap
+		q w e r t y u i o p [ ]
+		a s d f g h j k l ; '
+		z x c v b n m , . /
+		@nav @dvo @qwe
+)
+

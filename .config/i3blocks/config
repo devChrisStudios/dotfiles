@@ -1,0 +1,33 @@
+
+[cpu]
+command=echo "LAYER: $(~/bin/kanata-layer.py)"
+interval=1
+color=#FF69B4
+
+[cpu]
+command=echo  CPU: $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]%
+interval=5
+color=#7aa2f7
+
+[ram]
+command=free | awk '/^Mem/ {printf " RAM: %.2f%%\n", $3/$2 * 100}'
+interval=5
+color=#bb9af7
+
+[disk]
+command=PERCENT=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//'); AMOUNT=$(df -h / | awk 'NR==2 {print $3}'); echo " Used: $PERCENT%/$AMOUNT"; echo; if [ "$PERCENT" -gt 90 ]; then echo "#f7768e"; elif [ "$PERCENT" -gt 70 ]; then echo "#e0af68"; else echo "#9ece6a"; fi
+interval=3600
+
+[bat]
+#command=STATUS=$(cat /sys/class/power_supply/BAT1/status); CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity); echo " BAT: $CAPACITY% $STATUS"; echo; if [ "$STATUS" = "Charging" ]; then echo "#7aa2f7"; elif [ "$CAPACITY" -le 25 ] || [ "$CAPACITY" -gt 75 ]; then echo "#f7768e"; else echo "#e0af68"; fi
+command=STATUS=$(cat /sys/class/power_supply/BAT1/status); CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity); if [ "$STATUS" = "Charging" ]; then ICON="󱐋"; else ICON="󰚦"; fi; echo "$ICON BAT: $CAPACITY%"; echo; if [ "$STATUS" = "Charging" ]; then echo "#7aa2f7"; elif [ "$CAPACITY" -le 25 ] || [ "$CAPACITY" -gt 75 ]; then echo "#f7768e"; else echo "#e0af68"; fi
+interval=5
+
+[connection-status]
+command=if [ "$BLOCK_BUTTON" = "1" ]; then i3-msg exec "alacritty -e nmtui"; fi; IFACE="wlp3s0"; if [ -f /sys/class/net/$IFACE/carrier ] && [ "$(cat /sys/class/net/$IFACE/carrier)" -eq 1 ]; then echo " $(echo 'Online')"; echo; echo "#9ece6a"; else echo " Down"; echo; echo "#f7768e"; fi
+interval=3
+
+[time]
+command=date +%T
+interval=1
+color=#a9b1d6
