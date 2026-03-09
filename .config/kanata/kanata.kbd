@@ -19,7 +19,7 @@
 	nav (tap-hold $tap-time $hold-time spc (layer-toggle navigation))
 	
   ;; Caps Lock (For Both Layers): Tap for Esc, Hold for L-Control
-  cap (tap-hold $tap-time $hold-time esc lctl)
+  cap (tap-hold 100 120 esc lctl)
 
   ;; QWERTY Home Row Mods
   aq (tap-hold $tap-time $hold-time a lmet)
