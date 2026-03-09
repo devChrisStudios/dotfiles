@@ -1,5 +1,5 @@
 
-[cpu]
+[kanata]
 command=echo "LAYER: $(~/bin/kanata-layer.py)"
 interval=1
 color=#FF69B4
@@ -20,7 +20,7 @@ interval=3600
 
 [bat]
 #command=STATUS=$(cat /sys/class/power_supply/BAT1/status); CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity); echo " BAT: $CAPACITY% $STATUS"; echo; if [ "$STATUS" = "Charging" ]; then echo "#7aa2f7"; elif [ "$CAPACITY" -le 25 ] || [ "$CAPACITY" -gt 75 ]; then echo "#f7768e"; else echo "#e0af68"; fi
-command=STATUS=$(cat /sys/class/power_supply/BAT1/status); CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity); if [ "$STATUS" = "Charging" ]; then ICON="󱐋"; else ICON="󰚦"; fi; echo "$ICON BAT: $CAPACITY%"; echo; if [ "$STATUS" = "Charging" ]; then echo "#7aa2f7"; elif [ "$CAPACITY" -le 25 ] || [ "$CAPACITY" -gt 75 ]; then echo "#f7768e"; else echo "#e0af68"; fi
+command=STATUS=$(cat /sys/class/power_supply/BAT1/status); CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity); if [ "$STATUS" = "Charging" ]; then ICON="󱐋"; else ICON="󰚦"; fi; echo "$ICON BAT: $CAPACITY%"; echo; if [ "$CAPACITY" -le 25 ] || [ "$CAPACITY" -gt 75 ]; then echo "#f7768e"; elif [ "$STATUS" = "Charging" ]; then echo "#7aa2f7"; else echo "#e0af68"; fi
 interval=5
 
 [connection-status]

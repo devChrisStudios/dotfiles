@@ -59,6 +59,7 @@ alias inv='nvim $(fzf --preview="bat --color=always {}")'
 alias cd='z'
 alias cl='clear'
 alias mux='~/bin/tmux-start.sh'
+alias rrun='cargo run --quiet'
 
 # Tmux Script Completion
 _tmux_start_completion() {

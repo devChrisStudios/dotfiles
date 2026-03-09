@@ -17,8 +17,8 @@ exec_always --no-startup-id xinput disable 13
 
 # Keyboard Customization
 exec_always --no-startup-id killall kanata; kanata --cfg ~/.config/kanata/kanata.kbd -p 12321
-# exec_always --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
-# exec_always --no-startup-id xcape -e 'Caps_Lock=Escape'
+exec_always --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
+exec_always --no-startup-id xcape -e 'Caps_Lock=Escape'
 
 # Startup Apps
 exec_always --no-startup-id killall picom; picom --daemon --no-frame-pacing

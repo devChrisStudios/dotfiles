@@ -44,11 +44,20 @@
 
 ;; The physical keys we are looking at
 (defsrc
-caps
-  q w e r t y u i o p [ ]
-  a s d f g h j k l ; '
-  z x c v b n m , . /
-  spc f12 f1
+	caps
+		q w e r t y u i o p [ ]
+		a s d f g h j k l ; '
+		z x c v b n m , . /
+		spc f12 f1
+ )
+
+;; CLEAN Layer
+(deflayer clean
+	@cap
+		q w e r t y u i o p [ ]
+		a s d f g h j k l ; '
+		z x c v b n m , . /
+		@nav @dvo @qwe
  )
 
 ;; QWERTY Layer
@@ -62,11 +71,11 @@ caps
 
 ;; DVORAK Layer
 (deflayer dvorak
- @cap
- ' , . p y f g c r l [ ]
- @ad @od @ed @ud i d @hd @td @nd @sd -
- ; q j k x b m w v z
- @nav @qwe @bypass
+	@cap
+		' , . p y f g c r l [ ]
+		@ad @od @ed @ud i d @hd @td @nd @sd -
+		; q j k x b m w v z
+		@nav @qwe @bypass
 )
 
 ;; nav Layer
@@ -78,12 +87,4 @@ caps
 		@nav XX XX
 )
 
-;; CLEAN Layer
-(deflayer clean
-	@cap
-		q w e r t y u i o p [ ]
-		a s d f g h j k l ; '
-		z x c v b n m , . /
-		@nav @dvo @qwe
-)
 
