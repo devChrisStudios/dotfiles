@@ -30,7 +30,7 @@ for_window [instance="protonvpn-app"] move to workspace 9
 # Simple Keybindings
 bindsym --whole-window $mod+button2 kill
 bindsym $mod+space exec --no-startup-id rofi -show drun 
-bindsym $mod+b exec --no-startup-id brave
+bindsym $mod+b exec --no-startup-id librewolf
 bindsym $mod+Shift+b exec --no-startup-id firefox
 
 # Shell Scripts
