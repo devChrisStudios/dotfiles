@@ -88,8 +88,9 @@ compdef _tmux_start_completion tmux-start.sh
 # --- Shell integrations ---
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
+# eval "$(starship init zsh)"
 
-export FZF_DEFAULT_OPTS='--preview="bat --color=always {}"'
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 # Created by `pipx` on 2026-02-26 04:16:21
 export PATH="$PATH:/home/loki/.local/bin"
