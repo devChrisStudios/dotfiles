@@ -24,7 +24,7 @@ exec_always --no-startup-id xcape -e 'Caps_Lock=Escape'
 exec_always --no-startup-id killall picom; picom --daemon --no-frame-pacing
 exec_always --no-startup-id autotiling
 exec_always feh --bg-scale ~/Pictures/wallpapers/heart.png
-exec_always --no-startup-id pkill protonvpn-app && protonvpn-app
+exec_always --no-startup-id protonvpn-app
 for_window [instance="protonvpn-app"] move to workspace 9
 
 # Simple Keybindings
