@@ -91,6 +91,7 @@ eval "$(zoxide init zsh)"
 # eval "$(starship init zsh)"
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export MANPAGER='nvim +Man!'
 
 # Created by `pipx` on 2026-02-26 04:16:21
 export PATH="$PATH:/home/loki/.local/bin"
