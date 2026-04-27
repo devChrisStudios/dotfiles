@@ -3,22 +3,40 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Set the directory we want to story zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [ ! -d "$ZINIT_HOME" ]; then
+	mkdir -p "$(dirname $ZINIT_HOME)"
+	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# --- Powerlevel10k ---
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
 # --- Plugins ---
-source ~/.zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
-# zsh-completions — must be added to fpath before compinit
-fpath=(~/.zsh/plugins/zsh-completions/src $fpath)
-
-source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
-# zsh-syntax-highlighting must be sourced LAST
-source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# --- Snippets ---
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::command-not-found
 
 # --- Completions ---
 autoload -Uz compinit && compinit
 
+zinit cdreplay -q
+
 # --- Powerlevel10k config ---
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 
 # --- Keybindings ---
 bindkey -e
@@ -56,10 +74,29 @@ alias tree='exa --tree'
 alias grep='rg --color=auto'
 alias vim='nvim'
 alias inv='nvim $(fzf --preview="bat --color=always {}")'
-alias cd='z'
 alias cl='clear'
 alias mux='~/bin/tmux-start.sh'
 alias rrun='cargo run --quiet'
+
+
+# --- Shell integrations ---
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+
+# --- Starship ---
+# eval "$(starship init zsh)"
+# export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+# Set nvim as our manpager
+export MANPAGER='nvim +Man!'
+
+# fpath=(~/.zsh/plugins/zsh-completions/src $fpath)
+fpath=($HOME/.zsh_completions $fpath)
+
+# Created by `pipx` on 2026-02-26 04:16:21
+export PATH="$PATH:/home/loki/.local/bin"
+# opencode
+export PATH=/home/loki/.opencode/bin:$PATH
 
 # Tmux Script Completion
 _tmux_start_completion() {
@@ -85,13 +122,4 @@ _tmux_start_completion() {
 }
 compdef _tmux_start_completion tmux-start.sh
 
-# --- Shell integrations ---
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-# eval "$(starship init zsh)"
-
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export MANPAGER='nvim +Man!'
-
-# Created by `pipx` on 2026-02-26 04:16:21
-export PATH="$PATH:/home/loki/.local/bin"
+export PATH="$HOME/.npm-global/bin:$PATH"

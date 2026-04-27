@@ -1,9 +1,4 @@
 
-[kanata]
-command=echo "LAYER: $(~/bin/kanata-layer.py)"
-interval=1
-color=#FF69B4
-
 [cpu]
 command=echo  CPU: $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]%
 interval=5

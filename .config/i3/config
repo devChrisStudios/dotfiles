@@ -16,7 +16,7 @@ exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1200 --rate 60
 exec_always --no-startup-id xinput disable "ASUP1205:00 093A:2008 Touchpad"
 
 # Keyboard Customization
-exec_always --no-startup-id killall kanata; kanata --cfg ~/.config/kanata/kanata.kbd -p 12321
+# exec --no-startup-id killall kanata; kanata --cfg ~/.config/kanata/kanata.kbd -p 12321
 exec_always --no-startup-id setxkbmap -option 'caps:ctrl_modifier'
 exec_always --no-startup-id xcape -e 'Caps_Lock=Escape'
 
@@ -24,7 +24,7 @@ exec_always --no-startup-id xcape -e 'Caps_Lock=Escape'
 exec_always --no-startup-id killall picom; picom --daemon --no-frame-pacing
 exec_always --no-startup-id autotiling
 exec_always feh --bg-scale ~/Pictures/wallpapers/heart.png
-exec_always --no-startup-id protonvpn-app
+exec --no-startup-id protonvpn-app
 for_window [instance="protonvpn-app"] move to workspace 9
 
 # Simple Keybindings
@@ -32,6 +32,10 @@ bindsym --whole-window $mod+button2 kill
 bindsym $mod+space exec --no-startup-id rofi -show drun 
 bindsym $mod+b exec --no-startup-id librewolf
 bindsym $mod+Shift+b exec --no-startup-id firefox
+bindsym $mod+s exec --no-startup-id steam
+
+# Music Bindings
+bindsym $mod+Shift+m exec --no-startup-id ~/bin/mpc-pause.sh
 
 # Shell Scripts
 bindsym $mod+n exec --no-startup-id ~/bin/journal.sh
@@ -214,7 +218,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Window Layout
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
 focus_follows_mouse no
 gaps inner 10
 
